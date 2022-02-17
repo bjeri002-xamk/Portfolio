@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>kiinteistövälitys</title>
+    </head>
+    <body> 
+        Kohdenumero: <input id="kohdenro"><br>
+        Katuosoite: <input id="katuosoite"><br>
+        Postinumero: <input id="postinro"><br>
+        Postitoimipaikka: <input id="paikkakunta"><br>
+        Hinta: <input id="hinta"><br>
+        Pinta-Ala: <input id="pintaAla"><br>
+        <button type="button" onclick="lisaaAsunto();">Lisää</button><br><br>
+        Asunnon haku kohdenumerolla: <input id="numerollaHaku">
+        <button onclick="kohdeNumeroHaku();">Hae tiedot</button><br><br>
+        <div id="numeroHakuTulosteet"></div><br>
+        Hae postitoimipaikan perusteella: <input id="paikkakuntaHaku">
+        <button onclick="haePaikkakunnalla();">Hae</button><br><br>
+        <div id="paikkakuntaTulosteet"></div><br>
+       <script>
+           "use strict";
+           //luodaan lista asunnoista
+            let asunnot = [];
+            console.log(asunnot);
+            //Kun lisää-nappia painetaa, suoritetaan tämä funktio
+            function lisaaAsunto() {
+                //tallennetaan kaikki syötetyt tiedot muuttujiin
+                let kohdenro = document.getElementById("kohdenro").value;
+                let katuosoite = document.getElementById("katuosoite").value;
+                let postinro = document.getElementById("postinro").value;
+                let kaupunki = document.getElementById("paikkakunta").value;
+                let hinta = Number (document.getElementById("hinta").value);
+                let pintaAla = Number(document.getElementById("pintaAla").value);
+
+                //Luodaan saaduista syötteistä asunto olio
+                let asuntoOlio;
+                asuntoOlio = new Asunto(kohdenro, katuosoite, postinro, kaupunki, hinta, pintaAla);
+                //Lisätään olio asunnot-listan loppuun
+                asunnot.push(asuntoOlio);
+                console.log(asunnot);
+                //Tyhjennetään kentät uutta asuntoa varten
+                document.getElementById("kohdenro").value = "";
+                document.getElementById("katuosoite").value = "";
+                document.getElementById("postinro").value = "";
+                document.getElementById("paikkakunta").value = "";
+                document.getElementById("hinta").value = "";
+                document.getElementById("pintaAla").value = "";
+                document.getElementById("kohdenro").focus();
+            }
+
+            //Tämä totetutetaan kun haetaan kohdenumerolla
+            function kohdeNumeroHaku() {
+                //Luodaan muuttuja joka laskee montako asuntoa löytyy
+                let asuntolaskuri = 0;
+                //Otetaan talteen muuttujaan käyttäjän syöttämä numero
+                let haettuKohdenro = document.getElementById("numerollaHaku").value;
+                //Käydään läpi kaikki asunnot ja verrataan niiden kohdenumeroita käyttäjän syöttämään numeroon
+                for (let i = 0; i < asunnot.length; i++) {
+                    if (haettuKohdenro == asunnot[i].kohdenro) {
+                        
+                        //Mikäli kohde löytyy, tulostetaan sen tiedot
+                        document.getElementById("numeroHakuTulosteet").innerHTML = asunnot[i].tuloste();
+                        document.getElementById("numerollaHaku").value = "";
+                        //kasvatetaan laskuria
+                        asuntolaskuri++;
+                    }
+                } //Mikäli ei löytynyt yhtään asuntoa, suoritetaan tämä
+                if (asuntolaskuri == 0) {
+                    document.getElementById("numeroHakuTulosteet").innerHTML = "Asuntoa ei löytynyt.";
+                }
+            }
+            //Paikkakunnalla haku:
+            function haePaikkakunnalla() {
+                //Luodaan laskuri, jotta saadaan selville löytyykö yhtään asuntoa
+                let asuntolaskuri = 0;
+                //Otetaan talteen etsitty kaupunki
+                let kaupunki = document.getElementById("paikkakuntaHaku").value;
+                //Luodaan muuttuja tulosteelle
+                let tulostus = "";
+                //Käydään läpi asunnot
+                for (let i = 0; i < asunnot.length;i++) {
+                    //Jos löytyy etsitty asunto, suoritetaan tämä
+                    if (kaupunki == asunnot[i].paikkakunta) {
+                        //Muokataan tulostusta, jotta saadaan kaikkien löydettyjen asuntojen tiedot tulostettua peräkkäin.
+                        tulostus = tulostus + asunnot[i].tuloste() + "<br><br>";
+                        asuntolaskuri++;
+                    }
+                }
+                //Mikäli asuntoja ei löydy yhtään, suoritetaan tämä
+                if (asuntolaskuri == 0) {
+                    tulostus = "Asuntoja ei löytynyt."
+                }
+                //Lisätään tulostus haluttuun paikkaan.
+                document.getElementById("paikkakuntaTulosteet").innerHTML = tulostus;
+                document.getElementById("paikkakuntaHaku").value = "";
+            }
+            //Olioiden luonti tapahtuu tällä konstruktorilla
+            function Asunto(kohdenro, katuosoite, postinro, paikkakunta, hinta, pintaAla) {
+                this.kohdenro = kohdenro;
+                this.katuosoite = katuosoite;
+                this.postinro = postinro;
+                this.paikkakunta = paikkakunta;
+                this.hinta = hinta;
+                this.pintaAla = pintaAla;
+                this.laskeNelioHinta = function() {
+                    return this.hinta * this.pintaAla;
+                }
+                //Luodaan funktio, joka tulostaa tiedoista litanian valmiiksi jokaisen asunnon omilla tiedoilla
+                this.tuloste = function() {
+                    return "Kohdenumero: " + this.kohdenro + "<br>Katuosoite: " + this.katuosoite + "<br>Postinumero: " + this.postinro + "<br>Postitoimipaikka: " + this.paikkakunta + "<br>Hinta: " + this.hinta + "<br>Pinta-Ala: " + this.pintaAla + "<br>Neliöhinta: " + this.laskeNelioHinta();
+                }
+            }
+            
+        </script>
+    </body>
+</html>

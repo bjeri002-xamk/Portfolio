@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Sekuntit</title>
+    </head>
+    <body>
+        <h1>Muunna tunneiksi, minuuteiksi ja sekunneiksi.</h1>
+        Sekunnit:<input id="sekunnit"><br>
+        <button onclick="muunna();">Muunna</button> 
+        <br/><br/>
+        <div id ="tulostusAlue"></div>
+        <script>
+        
+            "use strict";
+            
+            function muunna() {
+                let sekunnit = Number(document.getElementById("sekunnit").value); //otetaan talteen luku kohdasta "sekunit" ja asetetaan tunneiksi ja minuuteiksi 0.
+                let minuutit = 0;
+                let tunnit = 0;
+                
+                if (sekunnit >= 60 && sekunnit < 3600) { //jos sekunnit on välillä 60-3599 suoritetaan tästä eteenpäin
+                    minuutit = Math.trunc(sekunnit / 60); //otetaan desimaalit pois käyttäen Math.trunc
+                    sekunnit = sekunnit - minuutit * 60; //lasketaan jäljelle jääneet sekunnit
+                } else if (sekunnit >= 3600) { //jos sekuntteja on yli 3600, suoritetaan tästä eteenpäin
+                    tunnit = Math.trunc(sekunnit / 3600);
+                    sekunnit = sekunnit - tunnit * 3600;
+                    if (sekunnit >= 60) { //kun tunnit on laskettu, niin jos sekuntteja jää yli 60, suoritetaan nämä
+                        minuutit = Math.trunc(sekunnit / 60);
+                        sekunnit = sekunnit - minuutit * 60;
+                    }
+                } else if (sekunnit < 0) { //mikäli syötetty luku on negatiivinen, annetaan sekunttien olla 0.
+                    sekunnit = 0;
+                }
+
+                //vastaus suomenkielen mukaan
+                if (tunnit == 1 && minuutit == 1 && sekunnit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tunti, " + minuutit + " minuutti, " + sekunnit + " sekuntti.";
+                } else if (tunnit == 1 && minuutit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tunti, " + minuutit + " minuutti, " + sekunnit + " sekunttia.";
+                } else if (minuutit == 1 && sekunnit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tuntia, " + minuutit + " minuutti, " + sekunnit + " sekuntti.";
+                } else if (tunnit == 1 && sekunnit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tunti, " + minuutit + " minuuttia, " + sekunnit + " sekuntti.";
+                } else if (tunnit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tunti, " + minuutit + " minuuttia, " + sekunnit + " sekunttia.";
+                } else if (minuutit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tuntia, " + minuutit + " minuutti, " + sekunnit + " sekunttia.";
+                } else if (sekunnit == 1) {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tuntia, " + minuutit + " minuuttia, " + sekunnit + " sekuntti.";
+                } else {
+                    document.getElementById("tulostusAlue").innerHTML = tunnit + " tuntia, " + minuutit + " minuuttia, " + sekunnit + " sekunttia.";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+	<meta charset="utf-8"/>
+    <title>Presidentinvaalit</title>
+    <link rel="stylesheet" type="text/css" href="tyylit1c.css"/>
+</head>
+<body>
+    <h1>Presidentin vaalit 2024</h1>
+    <h2>Ääntenlaskenta</h2>
+	<button type="button" onclick="tokalle();"> 2 </button>
+    <button type="button" onclick="kolmannelle();"> 3 </button>
+    <button type="button" onclick="neljannelle();"> 4 </button>
+    <button type="button" onclick="viidennelle();"> 5 </button>
+    <button type="button" onclick="kuudennelle();"> 6 </button>
+
+    <h1>Tulos:</h1>
+    <div id="toka">2. Ville Koivisto: 0</div>
+    <div id="kolmas">3. Urho Obama: 0</div>
+    <div id="neljas">4. Marja Kekki: 0</div>
+    <div id="viides">5. Sinikka Soini: 0</div>
+    <div id="kuudes">6. Jussi Haavisto: 0</div>
+<script>
+	"use strict";
+    //Luodaan jokaiselle ehdokkaalle oma laskuri
+    let toka = 0;
+    let kolmas = 0;
+    let neljas = 0;
+    let viides = 0;
+    let kuudes = 0;
+    //Jokaiselle ehdokkaalle on oma nappinsa, joten jokaiselle on myös oma funktio, joka suoritetaan
+    //Se kenen numeroa painetaan, sillo lisätään laskuriin 1
+    //Muutetaan ehdokkaiden äänimääriä reaaliajassa
+    function tokalle() {
+        toka++;
+        document.getElementById("toka").innerHTML = "2. Ville Koivisto: " + toka;
+    }
+    function kolmannelle() {
+        kolmas++;
+        document.getElementById("kolmas").innerHTML = "3. Urho Obama: " + kolmas;
+    }
+    function neljannelle() {
+        neljas++;
+        document.getElementById("neljas").innerHTML = "4. Marja Kekki: " + neljas;
+    }
+    function viidennelle() {
+        viides++;
+        document.getElementById("viides").innerHTML = "5. Sinikka Soini: " + viides;
+    }
+    function kuudennelle() {
+        kuudes++;
+        document.getElementById("kuudes").innerHTML = "6. Jussi Haavisto: " + kuudes;
+    }
+</script>
+</body>
+</html>
+
+

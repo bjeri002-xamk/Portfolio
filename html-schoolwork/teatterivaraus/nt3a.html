@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Elokuvateatteri</title>
+        <link rel="stylesheet" type="text/css" href="tyylit3a.css"/>
+    </head>
+    <body>   
+        <h2>Teatteri</h2>
+        <table>
+            <tr>
+                <td id="1">1</td>
+                <td id="2">2</td>
+                <td id="3">3</td>
+                <td id="4">4</td>
+                <td id="5">5</td>
+                <td id="6">6</td>
+            </tr>
+            <tr>
+                <td id="7">7</td>
+                <td id="8">8</td>
+                <td id="9">9</td>
+                <td id="10">10</td>
+                <td id="11">11</td>
+                <td id="12">12</td>
+            </tr>
+            <tr>
+                <td id="13">13</td>
+                <td id="14">14</td>
+                <td id="15">15</td>
+                <td id="16">16</td>
+                <td id="17">17</td>
+                <td id="18">18</td>
+            </tr>
+            <tr>
+                <td id="19">19</td>
+                <td id="20">20</td>
+                <td id="21">21</td>
+                <td id="22">22</td>
+                <td id="23">23</td>
+                <td id="24">24</td>
+            </tr>
+            <tr>
+                <td id="25">25</td>
+                <td id="26">26</td>
+                <td id="27">27</td>
+                <td id="28">28</td>
+                <td id="29">29</td>
+                <td id="30">30</td>
+            </tr>
+        </table>
+        <p>Anna paikkanumero:</p>
+        <input id="paikkaNro" name="paikkaNro">
+        <button type="button" id="varaa" onclick="varaa();">Varaa</button><br>
+        <p id="tulostusAlue"></p>
+       <script>
+           "use strict";
+            //Kun "varaa" nappia painetaan, suoritetaan tämä funktio
+            //luodaan lista varatuista
+            let varatut = [];
+            function varaa() {
+                //Otetaan syötetty luku talteen
+                let varaus = document.getElementById("paikkaNro").value;
+                
+                //Luvun täytyy olla väliltä 1-30
+                if (varaus <= 30 && varaus > 0){
+                    
+                    let uniikki = true; //luodaan muuttuja joka tallettaa onko luku jo listalla
+                    
+                    //käydään läpi lista syötetyistä numeroista
+                    for (let i = 0; i < varatut.length; i++) {
+                        if (varatut[i] == varaus) { //jos syötetty paikkanumero on jo listalla, suoritetaan tämä
+                            document.getElementById("tulostusAlue").innerHTML = "Paikka on jo varattu!"; //Tulostetaan että paikka on varattu
+                            document.getElementById("paikkaNro").value = ""; //tyhjennetään kenttä
+                            document.getElementById("paikkaNro").focus();
+                            uniikki = false; //luku on jo listalla, joten vaihdetaan epätodeksi, jotta seuraava kohta ei toteudu
+                        }
+                    }
+                    //Tämä suoritetaan kun lukua ei löydy listalta
+                    if (uniikki) {
+                        document.getElementById("tulostusAlue").innerHTML = "";
+                        //Lisätään syötetty paikka listan loppuun
+                        varatut.push(varaus);
+                        //Muutetaan varattu paikka punaiseksi, mikäli ei listalla
+                        //tyhjennetään kenttä, ja kursori kohdilleen
+                        document.getElementById(varaus).style.backgroundColor = "red";
+                        document.getElementById("paikkaNro").value = "";
+                        document.getElementById("paikkaNro").focus();
+                    }
+                } else {
+                    document.getElementById("tulostusAlue").innerHTML = "Kyseistä paikkaa ei löydy.";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<title>Pallot</title>
+<meta charset="utf-8"/>
+<style type="text/css">
+    #pallo, #pallo2 {
+        border-radius: 50px;
+        background: brown;
+        height: 50px;
+        width: 50px;
+        position: absolute;
+    }
+    #pallo2 {
+        background: blue;
+    }
+    #rajat {
+        height: 500px;
+        width: 800px;
+        border: 2px solid black;
+    }
+</style>
+</head>
+<body onload="init()">
+    <div id="rajat">
+        <div id="pallo"></div>
+        <div id="pallo2"></div>
+    </div>
+<script>
+    //Kun sivu ladataan, ruudulle luodaan pallo ja rajat
+    "use strict";
+    //Luodaan muuttujat palloille
+    let pallo = document.getElementById("pallo");
+    let pallo2 = document.getElementById("pallo2");
+    //Luodaan muuttujat, jolla pallo liikkuu 10 pikselin verran, sekä x ja y koordinaatit
+    let suunta = 10;
+    let x_sijainti = 0;
+    let y_sijainti = 0;
+
+    //Luodaan funktio jolla pallo liikkuu
+    function liiku(evt) {
+        //Kun painetaan oikea nuolta:
+        if (evt.keyCode == 39) {
+            //Otetaan talteen mihin pallon tulee liikkua
+            x_sijainti = parseInt(pallo.style.left) + suunta;
+            if (x_sijainti <= 760) { //Pidetään pallo rajojen sisällä
+                //Annetaan pallon tuleva sijainti pallon vasemmalle sivulle, johon se siirtyy
+                pallo.style.left = x_sijainti + "px";
+            }
+        }
+        //d-näppäin
+        if (evt.keyCode == 68) { 
+            x_sijainti = parseInt(pallo2.style.left) + suunta;
+            if (x_sijainti <= 760) { 
+                pallo2.style.left = x_sijainti + "px";
+            }
+        }
+        //vasen nuoli
+        if (evt.keyCode == 37) {
+            x_sijainti = parseInt(pallo.style.left) - suunta;
+            if (x_sijainti >= 10) {
+                pallo.style.left = x_sijainti + "px";
+            }
+        }
+        //a-näppäin
+        if (evt.keyCode == 65) {
+            x_sijainti = parseInt(pallo2.style.left) - suunta;
+            if (x_sijainti >= 10) {
+                pallo2.style.left = x_sijainti + "px";
+            }
+        }
+        //nuoli alas
+        if (evt.keyCode == 40) {
+            y_sijainti = parseInt(pallo.style.top) + suunta;
+            if (y_sijainti <= 460) {
+                pallo.style.top = y_sijainti + "px";
+            }
+        }
+        //z-näppäin
+        if (evt.keyCode == 90) {
+            y_sijainti = parseInt(pallo2.style.top) + suunta;
+            if (y_sijainti <= 460) {
+                pallo2.style.top = y_sijainti + "px";
+            }
+        }
+        //nuoli ylös
+        if (evt.keyCode == 38) {
+            y_sijainti = parseInt(pallo.style.top) - suunta;
+            if (y_sijainti >= 10) {
+                pallo.style.top = y_sijainti + "px";
+            }
+        }
+        //w-näppäin
+        if (evt.keyCode == 87) {
+            y_sijainti = parseInt(pallo2.style.top) - suunta;
+            if (y_sijainti >= 10) {
+                pallo2.style.top = y_sijainti + "px";
+            }
+        }
+        //välilyönti
+        if (evt.keyCode == 32) {
+            //Annetaan suoraan koordinaatit ylä ja vasemmalle reunalle, johon liikkua
+            pallo.style.top = "10px";
+            pallo.style.left = "10px";
+            pallo2.style.top = "10px";
+            pallo2.style.left = "10px";
+        }
+    }
+
+    //Funktio, joka suoritetaan kun sivu latautuu
+    function init() {
+        //Otetaan ylös pallojen vasen ja yläreunan sijainti
+        pallo.style.left = "10px";
+        pallo.style.top = "10px";
+        pallo2.style.left = "10px";
+        pallo2.style.top = "10px";
+        //Luodaan eventlisteneri, kun painetaan näppäin alas, tällöin suoritetaan metodi liiku().
+        window.addEventListener('keydown',liiku);
+    }
+	
+</script>
+
+</body>
+</html>
+
+	
+   

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Nestesäiliöt</title>
+        <link rel="stylesheet" type="text/css" href="tyylit3b.css"/>
+    </head>
+    <body>   
+        <h1>Nestesäiliöt (tonnia)</h1>
+        <table>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+            </tr>
+            <tr>
+                <td id="1">10000</td>
+                <td id="2">10000</td>
+                <td id="3">10000</td>
+                <td id="4">10000</td>
+                <td id="5">10000</td>
+                <td id="6">10000</td>
+                <td id="7">10000</td>
+                <td id="8">10000</td>
+                <td id="9">10000</td>
+                <td id="10">10000</td>
+                <td id="11">10000</td>
+                <td id="12">10000</td>
+                <td id="13">10000</td>
+                <td id="14">10000</td>
+                <td id="15">10000</td>
+                <td id="16">10000</td>
+                <td id="17">10000</td>
+                <td id="18">10000</td>
+                <td id="19">10000</td>
+                <td id="20">10000</td>
+            </tr>
+        </table><br>
+        Mistä tankista: <input id="mista"><br>
+        Mihin tankkiin: <input id="mihin"><br>
+        Paljonko siirretään: <input id="paljonko"><br>
+        <button id="nappi" onclick="siirra();">Siirrä</button>
+        <div id="tulostusAlue"></div>
+        <script>
+            "use strict";
+            //luodaan lista tankeista
+            let tankit = [];
+            //Saadaan alkuun kaikkien sisällöksi annettu 10000
+            for (let i = 1; i <= 20; i++) {
+                    tankit.push(document.getElementById(i).innerHTML);
+                }
+            
+            function siirra() { //kun painetaan Siirrä-nappia, suoritetaan tämä
+                //Luodaan muuttujat käyttäjän syöttämille arvoille ja muutetaan numeroiksi
+                let mista = Number(document.getElementById("mista").value) -1; //vähennetään saadusta arvosta 1, sillä lista alkaa nollasta
+                let mihin = Number(document.getElementById("mihin").value) -1;
+                let paljonko = Number(document.getElementById("paljonko").value);
+                //Luodaan muuttujat myös erotukselle ja paljonko siirrettävään tulee tavaraa
+                let erotus = tankit[mista] - paljonko;
+                let mahtuuko = paljonko + Number(tankit[mihin]);
+                
+                //Mikäli erotus on yli 0 ja siirrettävään tankkiin ei mene yli 20000, suoritetaan tämä
+                if (erotus >= 0 && mahtuuko <= 20000) {
+                    //muutetaan haluttujen tankkien arvot
+                    tankit[mista] = erotus; 
+                    tankit[mihin] = mahtuuko;
+                    //Käydään läpi kaikki listan arvot, ja muutetaan ne näkyvillä oleviin tankkeihin, jotta käyttäjä näkee paljonko missäkin on.
+                    for (let j = 1; j <=20; j++) {
+                        document.getElementById(j).innerHTML = tankit[j-1];
+                        document.getElementById("tulostusAlue").innerHTML = "";
+                    }
+                //Muissa tapauksissa tulostetaan tämä
+                } else { 
+                    document.getElementById("tulostusAlue").innerHTML = "Siirto ei mahdollinen!"
+                }
+                //Lopuksi tyhjennetään kentät
+                document.getElementById("mista").value = "";
+                document.getElementById("mihin").value = "";
+                document.getElementById("paljonko").value = "";
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+#otsikko {
+    color: blue;
+}
+#tutkiNappi {
+    width: 180px;
+}
+body {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}

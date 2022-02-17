@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>kumpiSuurempi</title>
+    </head>
+    <body>   
+       <script>
+            "use strict";
+            let luku1 = prompt("Syötä ensimmäinen luku:");
+            let luku2 = prompt("Syötä toinen luku:");
+            function tutkiKumpiOnSuurempiLuku(luku1, luku2) {
+                if (luku1 > luku2) {
+                    return luku1;
+                }
+                return luku2;
+            }
+
+            let suurempi = tutkiKumpiOnSuurempiLuku(luku1,luku2);
+            alert(suurempi + " on suurempi luku.");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8"/>
+    <title>Nopeustutka</title>
+    <link rel="stylesheet" type="text/css" href="tyylit2a.css"/>
+</head>
+
+<body>
+    <h1 id="otsikko">Nopeustutka</h1>
+    Nopeusrajoitus: <br>
+    <input id="rajoitus"><br>
+    Auton nopeus: <br>
+    <input id="nopeus"><br><br>
+    <button id ="tutkiNappi" onclick="tutki();">Tutki</button><br><br>
+    <div id="ohje"></div>
+    <div id="sakot"></div>
+<script>
+    //Luodaan otsikko, kaksi kenttää johon syötetään tiedot, sekä nappi joka suorittaa funktion "tutki()".
+    "use strict";
+
+    function tutki() { 
+        let rajoitus = Number(document.getElementById("rajoitus").value); //luodaan muuttujat käyttäjän syöttämästä rajoituksesta ja nopeudesta
+        let nopeus = Number(document.getElementById("nopeus").value); 
+        let ylinopeus = nopeus - rajoitus; //lasketaan ylinopeus
+        let tulostus = "";
+        let sakko = 0;
+
+        //Lasketaan vielä sakon määrä, käyttäjän tietojen perusteella:
+        //mikäli rajoitus on alle 60:
+        if (rajoitus <= 60) {
+            if (ylinopeus > 0 && ylinopeus <= 10) {
+                sakko = 100;
+            } else if (ylinopeus > 10 && ylinopeus <= 15) {
+                sakko = 170;
+            } else if ( ylinopeus > 15 && ylinopeus <= 20) {
+                sakko = 200;
+            }
+            //Mikäli rajoitus on yli 60:
+        } else if (rajoitus > 60) {
+            if (ylinopeus > 0 && ylinopeus <= 10) {
+                sakko = 70;
+            } else if (ylinopeus > 10 && ylinopeus <= 15) {
+                sakko = 140;
+            } else if ( ylinopeus > 15 && ylinopeus <= 20) {
+                sakko = 170;
+            }
+        }
+        //Lasketun ylinopeuden mukaan, tulostukset tulevat seuraavasti:
+        if (ylinopeus <= 0) {
+            tulostus = "Toivota hyvää matkaa!";
+        } else if (ylinopeus > 20) {
+            tulostus = "Kysy tulot ja laske päiväsakko";
+        } else if (ylinopeus > 0 && ylinopeus <= 20) {
+            tulostus = "Määrää liikennevirhemaksu<br/>" + sakko + " euroa!";
+        }
+
+        //Lopuksi tulostetaan ohje, ja sakko, mikäli sellaista on kertynyt
+        document.getElementById("ohje").innerHTML = tulostus;
+    }
+</script>
+
+</body>
+</html>

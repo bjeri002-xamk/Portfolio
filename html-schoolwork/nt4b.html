@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>henkilötunnus</title>
+    </head>
+    <body>   
+       <script>
+            "use strict";
+            let syntymaAika = prompt("Syötä syntymäaikasi:");
+            function onkoSyntynytEnnen1995(hetu) {
+                if (hetu.length == 11) {
+                    let vuosisata = hetu[6];
+                    let vuosikymmen = hetu[4];
+                    let vuosi = hetu[5];
+                    let eiOle = "Henkilö ei ole syntynyt ennen vuotta 1995";
+                    let onSyntynyt = "Henkilö on syntynyt ennen vuotta 1995";
+
+                    if (vuosisata == "A") {
+                        return eiOle;
+                    } else if (vuosisata == "-" && vuosikymmen == "9" && vuosi >= "5") {
+                        return eiOle;
+                    } 
+                    return onSyntynyt;
+                }
+                return "virheellinen henkilötunnus!";
+            }
+            alert(onkoSyntynytEnnen1995(syntymaAika));
+        </script>
+    </body>
+</html>
