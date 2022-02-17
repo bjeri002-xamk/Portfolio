@@ -1,0 +1,19 @@
+table {
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid gray;
+  width: 150px;
+  padding: 5px;
+}
+
+input {
+  border: none;
+}
+
+button {
+  border: none;
+
+}
