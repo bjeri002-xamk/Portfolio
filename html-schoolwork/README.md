@@ -1,1 +1,1 @@
-Some projects made with HTML.
+Some projects made with HTML and JavaScript.
