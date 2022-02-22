@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8"/>
+    <title>Nopat</title>
+    <link rel="stylesheet" type="text/css" href="tyylit2b.css"/> 
+</head>
+<body>
+    <button onclick = "heita();">Pelaa</button><br><br>
+    <img id="noppa1" alt="noppa1" src="noppa1.jpg"/>
+    <img id="noppa2" alt="noppa2" src="noppa1.jpg"/>
+    <div id="tulostusAlue"></div>
+<script>
+    //Ohjelma antaa ensin kaksi noppaa ja napin josta noppia heitetään.
+    "use strict";
+    let noppa1 = document.getElementById("noppa1");
+    let noppa2 = document.getElementById("noppa2"); 
+    let montakoSamaa = 0;
+    //Helpotetaan luomalla molemmille nopille muuttujanimet noppa1 ja noppa2
+    //Lisäksi luodaan laskuri kuinka monta samaa on saatu peräkkäin.
+    function heita() { //nappia painamalla tämä osio suoritetaan.
+        //eka kuva:
+        let luku1 = Math.floor((Math.random()*6)+1); //Randomilla saadaan jokin luku väliltä 1-6
+        if (luku1 == 1) {
+            noppa1.src = "noppa1.jpg"; //Jos randomilla saadaan 1, muutetaan noppa1 kuva noppa1 kuvaksi. Jokaiselle luvulle tehdään samoin.
+        } else if (luku1 == 2) {
+            noppa1.src = "noppa2.jpg";
+        } else if (luku1 == 3) {
+            noppa1.src = "noppa3.jpg";
+        } else if (luku1 == 4) {
+            noppa1.src = "noppa4.jpg";
+        } else if (luku1 == 5) {
+            noppa1.src = "noppa5.jpg";
+        } else if (luku1 == 6) {
+            noppa1.src = "noppa6.jpg";
+        }
+        //toiselle kuvalle tehdään kuten ekalle.:
+        let luku2 = Math.floor((Math.random()*6)+1);
+        if (luku2 == 1) {
+            noppa2.src = "noppa1.jpg"; 
+        } else if (luku2 == 2) {
+            noppa2.src = "noppa2.jpg";
+        } else if (luku2 == 3) {
+            noppa2.src = "noppa3.jpg";
+        } else if (luku2 == 4) {
+            noppa2.src = "noppa4.jpg";
+        } else if (luku2 == 5) {
+            noppa2.src = "noppa5.jpg";
+        } else if (luku2 == 6) {
+            noppa2.src = "noppa6.jpg";
+        }
+
+        //Jos noppien luvut ovat molemmat samat, tulostukset tulevat seuraavasti:
+        //Lisäksi mikäli luvut ovat samat, kasvatetaan laskuria yhdellä.
+        if(luku1 == 1 && luku2 == 1) {
+            document.getElementById("tulostusAlue").innerHTML = "Ykköspari";
+            montakoSamaa++;
+        } else if (luku1 == 2 && luku2 == 2) {
+            document.getElementById("tulostusAlue").innerHTML = "Kakkospari";
+            montakoSamaa++;
+        } else if (luku1 == 3 && luku2 == 3) {
+            document.getElementById("tulostusAlue").innerHTML = "Kolmospari";
+            montakoSamaa++;
+        } else if (luku1 == 4 && luku2 == 4) {
+            document.getElementById("tulostusAlue").innerHTML = "Nelospari";
+            montakoSamaa++;
+        } else if (luku1 == 5 && luku2 == 5) {
+            document.getElementById("tulostusAlue").innerHTML = "Vitospari";
+            montakoSamaa++;
+        } else if (luku1 == 6 && luku2 == 6) {
+            document.getElementById("tulostusAlue").innerHTML = "Kutospari";
+            montakoSamaa++;
+        } else { //Jos ei ole samat, ei tulosteta mitään, ja laskuri nollaantuu
+            document.getElementById("tulostusAlue").innerHTML = "";
+            montakoSamaa = 0;
+        }
+
+        if (montakoSamaa >= 3) { //Mikäli laskurissa on 3 tai enemmän, tulostetaan seuraava:
+            document.getElementById("tulostusAlue").innerHTML = "Sait jättipotin!";
+        }
+    }
+
+</script>
+
+</body>
+</html>
