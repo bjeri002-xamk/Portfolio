@@ -1,3 +1,7 @@
-My portfolio
+Movie-database-App with JavaScript and HTML.
 
-Here are some projects made by me as a school work.
+User can add movies with information.
+
+Tehere are few poster pictures in the folder already.
+
+User can then search movies with selected information and then the app will list all the movies matching the information.
