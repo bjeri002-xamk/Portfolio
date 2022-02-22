@@ -1,3 +1,3 @@
-My portfolio
+User can press witch candidate to vote by pressing the right button.
 
-Here are some projects made by me as a school work.
+Votes will be counted.
