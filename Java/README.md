@@ -1,1 +1,1 @@
-Java projects made in Ohjelmoinnin MOOC 2020-course.
+Some Java projects made in Ohjelmoinnin MOOC 2020-course.
