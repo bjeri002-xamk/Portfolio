@@ -1,3 +1,3 @@
-My portfolio
-
-Here are some projects made by me as a school work.
+This game is made with Python's Pygame-library.
+Player can choose the character and start the game.
+Player can move around with arrow-keys and collect bones against time.
