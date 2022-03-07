@@ -1,3 +1,1 @@
-My portfolio
-
-Here are some projects made by me as a school work.
+Websites made with HTML using different frameworks.
