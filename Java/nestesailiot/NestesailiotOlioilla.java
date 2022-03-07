@@ -12,7 +12,7 @@ public class NestesailiotOlioilla {
         System.out.println("Toinen: " + toka);
 
         while (true) {
-            System.out.print("komennot:\nlisaa (paljonko lisätään 1. säiliöön)\nsiirra (paljonko siirretään 1. säiliöstä 2. säiliöön)\nlopeta ");
+            System.out.print("komennot:\nlisaa (paljonko lisätään 1. säiliöön)\nsiirra (paljonko siirretään 1. säiliöstä 2. säiliöön)\nlopeta\n");
 
             String luettu = lukija.nextLine();
             if (luettu.equals("lopeta")) {
