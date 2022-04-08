@@ -1,1 +1,1 @@
-Some SQL-practices witj Java.
+Some SQL-practices with Java.
