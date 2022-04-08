@@ -1,4 +1,4 @@
-# Driving log
+# Drive log
 
 Server-app using Node/Express/Prisma-techniques.
 
