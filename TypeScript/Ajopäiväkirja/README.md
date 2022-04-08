@@ -1,4 +1,4 @@
-# Sovellusohjelmointi 2 oppimistehtävät -startteri
+# Driving log
 
 Server-app using Node/Express/Prisma-techniques.
 
