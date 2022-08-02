@@ -1,3 +1,3 @@
 My portfolio
 
-Here are some projects made by me..
+Here are some projects made by me.
